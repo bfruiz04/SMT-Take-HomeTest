@@ -1,4 +1,5 @@
 # GCP Cloud Function with Load Balancer - Terraform Deployment
+![image](https://github.com/user-attachments/assets/a3a8e457-fbfb-4bcd-b549-0b2b91c66ed2)
 
 This repository contains Terraform code to deploy a simple "Hello World" application on Google Cloud Platform (GCP). The application consists of a Python Cloud Function (Gen 2) exposed via a Global HTTP Load Balancer, secured with Cloud Armor, and deployed within a newly created GCP project.
 
