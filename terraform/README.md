@@ -45,8 +45,8 @@ The infrastructure created by this Terraform configuration includes:
 
 1.  **Clone Repository:**
     ```bash
-    git clone <repository-url>
-    cd <repository-directory>
+    git clone https://github.com/bfruiz04/SMT-Take-HomeTest.git
+    cd smt-gcp-terraform-project
     ```
 2.  **Configure Variables:**
     * Navigate to the `terraform/` directory: `cd terraform`
@@ -77,14 +77,14 @@ After `terraform apply` completes successfully:
 2.  **Test GET Request (Success):**
     * Open your browser or use `curl` to access the `/helloWorld` path on the Load Balancer's IP:
         ```bash
-        curl http://<LOAD_BALANCER_IP>/helloWorld
+        curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" http://34.95.105.197/helloWorld
         ```
     * You should receive the response: `Hello World!`
 
 3.  **Test POST Request (Failure):**
     * Use `curl` to send a POST request:
         ```bash
-        curl -X POST http://<LOAD_BALANCER_IP>/helloWorld
+        curl -X POST -H "Authorization: Bearer $(gcloud auth print-identity-token)" -d "" http://34.95.105.197/helloWorld
         ```
     * You should receive a `405 Method Not Allowed` error (or similar, like a generic error page from the LB if the function doesn't handle it explicitly, though our function does). The key is that it should *fail*, not return "Hello World!".
 
@@ -92,7 +92,7 @@ After `terraform apply` completes successfully:
     * Find the `cloud_function_uri` in the Terraform output (it might be marked sensitive).
     * Try accessing this URL directly using `curl` or your browser:
         ```bash
-        curl <CLOUD_FUNCTION_URI>
+        curl -X GET -H "Authorization: Bearer $(gcloud auth print-identity-token)" https://us-central1-smt-the-dev-brayam-ruiz-wr4j.cloudfunctions.net/hello-world-function-dev/helloWorld
         ```
     * You should receive a `403 Forbidden` error because the function's ingress settings block direct public access.
 
@@ -121,5 +121,3 @@ To destroy all the resources created by this Terraform configuration:
 * **Security:** Focuses on network-level security (LB, Cloud Armor, Function Ingress). Secret Manager wasn't needed for this simple function but would be essential for managing API keys, database passwords, etc.
 * **Scalability/HA:** Cloud Functions and the Load Balancer are inherently scalable and managed by Google for high availability. Configuration options (like `max_instance_count`) allow tuning.
 * **Monitoring/Logging:** GCP Cloud Logging and Monitoring are automatically integrated to some extent. Custom metrics or detailed dashboards would require additional configuration (e.g., `google_monitoring_dashboard` resources).
-* **Testing:** Infrastructure testing with tools like Terratest was not implemented but is recommended for production environments to validate infrastructure changes automatically.
-
