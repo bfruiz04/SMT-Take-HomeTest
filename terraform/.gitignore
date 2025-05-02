@@ -1,0 +1,32 @@
+# === Terraform ===
+*.tfstate
+*.tfstate.backup
+.terraform/
+terraform.tfvars
+*.tfplan
+crash.log
+.terraform.lock.hcl
+
+# === Python ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+.env
+.venv/
+venv/
+pip-log.txt
+*.egg-info/
+
+# === Sistema y editor ===
+.DS_Store
+Thumbs.db
+
+# === VSCode o JetBrains (si los usas) ===
+.vscode/
+.idea/
+
+# === Archivos comprimidos (si generas zips para Cloud Functions) ===
+*.zip
+*.tar.gz

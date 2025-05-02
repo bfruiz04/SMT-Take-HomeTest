@@ -1,0 +1,21 @@
+# terraform.tfvars.example
+# Rename this file to terraform.tfvars and fill in your actual values.
+# Do NOT commit terraform.tfvars to Git if it contains sensitive information.
+
+# --- GCP Configuration ---
+# Replace with your actual Organization ID
+org_id = "xxxxxxx"
+
+# Replace with your actual Billing Account ID
+billing_account = "xxxxxxx"
+
+# Optional: Override the default region if needed
+region = "us-central1"
+
+# --- Environment Configuration ---
+# Choose the environment: "dev", "tst", or "prd"
+environment = "dev"
+
+# Replace with your name or identifier (lowercase, numbers, hyphens only)
+user_name = "brayam-ruiz"
+

@@ -1,0 +1,6 @@
+# requirements.txt
+# Specify the necessary Python packages and their versions.
+# functions-framework is required by GCP to handle HTTP triggers.
+# Flask is a dependency of functions-framework for web functionality.
+functions-framework>=3.0.0
+Flask>=2.0.0
